@@ -1,13 +1,14 @@
-
+  
 // from data.js
-console.log(tableData);
-var tblColumns = ["datetime", "city", "state", "country", "shape", "duration", "comments"]
+var tableData = data;
 
+// YOUR CODE HERE!
+
+// get table references
 var tbody = d3.select("tbody");
 
-
 function buildTable(data) {
-    tbody.html ("");
+  tbody.html("")
 
 
     data.forEach((dataRow) => {
@@ -21,3 +22,19 @@ function buildTable(data) {
         );
     });
 }
+function buttonClick(); {
+
+    d3.event.preventDefault();
+
+    var date = d3.select("#datetime").property("value");
+    let filteredData = tableData;
+
+    if (date) {
+        filteredData = filteredData.filter(row => row.datetime === date);
+    }
+
+    buildTable(filteredData);
+}
+
+d3.selectAll("#filter=btn").on("click", buttonClick);
+buildTable(tableData);
